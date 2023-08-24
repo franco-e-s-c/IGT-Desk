@@ -1,0 +1,14 @@
+@echo off
+SET PG_BIN="C:\Program Files\PostgreSQL\13\bin\pg_dump.exe"
+SET PG_HOST=localhost
+SET PG_PORT=5433
+SET PG_DATABASE=igt_db
+SET PG_USER=igtuser
+SET PGPASSWORD=igtAdmin
+SET PG_PATH=%~dp0
+SET FECHAYHORA=%date:/=%-%time:-0,8%
+SET FECHAYHORA=%FECHAYHORA::=-%
+SET FECHAYHORA=%FECHAYHORA: =0%
+SET PG_FILENAME=server240823.sql
+%PG_BIN% -Fc -h %PG_HOST% -w -p %PG_PORT% -U %PG_USER% %PG_DATABASE% > %PG_FILENAME%
+pause

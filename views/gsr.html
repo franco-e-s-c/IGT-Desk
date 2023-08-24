@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="css/stylesB.css">
+    <script src="../node_modules/plotly.js-dist/plotly.js"></script>
+    <title>Document</title>
+</head>
+<body onload="loadSensores()" style="background-color: #2D3264;">
+    <div class="row justify-content-start mb-3">
+        <div class="col-2">
+            <label class="labelW" for="savePorts">Puertos Disponibles</label>
+            <select class="form-select" aria-label="Puerto" id="savePorts">
+                <option selected value="0">Ninguno</option>
+            </select>
+        </div>
+        <div class="col-2">
+            <label for="baud" class="labelW">Baud Rate</label>
+            <select class="form-select" aria-label="Puerto" id="baud">
+                <option selected value=300>300</option>
+                <option selected value=600>600</option>
+                <option selected value=1200>1200</option>
+                <option selected value=2400>2400</option>
+                <option selected value=4800>4800</option>
+                <option selected value=9600>9600</option>
+                <option selected value=14400>14400</option>
+                <option selected value=19200>19200</option>
+                <option selected value=28800>28800</option>
+                <option selected value=31250>31250</option>
+                <option selected value=38400>38400</option>
+                <option selected value=57600>57600</option>
+                <option selected value=115200>115200</option>
+            </select>
+        </div>
+        <div class="col-2">
+            <label for="baud" class="labelW"></label>
+            <button class="boton" style="width: 100%;" onclick="loadPor()">Conectar</button>
+        </div>
+    </div>
+    
+
+    <div id="chart"></div>
+    <script>
+    </script>
+    <br>
+    <div style="text-align: center;">
+        <a href="resumen.html" style="width: 15%; margin: auto;">
+            <button class="boton" style="width: 15%;" onclick="cerrar()">Atrás</button>
+        </a>
+        <br>
+        <br>
+            <button class="boton" style="width: 15%;" onclick="encender()">Enviar señal</button>
+    </div>
+    <script src="../viewscripts/gsr.js"></script>
+</body>
+</html>

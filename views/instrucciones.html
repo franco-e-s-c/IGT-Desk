@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div class="container-fluid" style="background: url(src/fondo.jpg) no-repeat; width: 100%; height: 100vh; background-position: center;">
+    <div class="row justify-content-center" style="--bs-gutter-x: 0;">
+        <h1 class="titulo" style="font-weight: 700; margin-top: 5vh;">GoGamblerGo</h1>
+        <h2 class="subtitulo" style="color: #ffffff; font-weight: 500; margin-top: 2vh;">Instrucciones</h2>
+        <div class="col-11 fondoRes" style="margin-top: 4vh; margin-bottom: 8vh;">
+            <p class="parrafo" style="margin-top: 3vh;">
+                Selecciona uno de los cuatro mazos que se presentan (A, B, C y D) haciendo 'click' sobre él.
+            </p>
+            <p class="parrafo">
+                Por cada mazo seleccionado tendrás la posibilidad de ganar o perder una cantidad determinada de créditos.
+            </p>
+            <p class="parrafo">
+                Puedes elegir el mazo que desees en cualquier momento de la prueba, incluso si eliges el mismo en varias ocasiones.    
+            </p>
+            <p class="parrafo">
+                El objetivo de la prueba es colectar la mayor cantidad de créditos posible en el menor tiempo posible.
+            </p>
+            <p class="parrafo">
+                Se te proporcionarán algunos créditos como banco inicial, iniciarás la prueba desde el botón COMENZAR. 
+            </p>
+            <p class="parrafo">
+                ¡Buena suerte!
+            </p>
+        </div>
+        <div id="liveAlertPlaceholder"></div>
+        
+            <button id='saveExp'class="boton" style="width: 15%;" onclick="guardarExpe()">COMENZAR</button>
+        
+    </div>
+</div>
+<script src="../viewscripts/instrucciones.js"></script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="../node_modules/datatables.net-bs5/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="../node_modules/datatables.net-searchpanes-bs5/css/searchPanes.bootstrap5.css">
+    <link rel="stylesheet" href="../node_modules/datatables.net-select-bs5/css/select.bootstrap5.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="../node_modules/datatables.net-searchpanes/js/dataTables.searchPanes.js"></script>
+    <script src="../node_modules/datatables.net-select/js/dataTables.select.js"></script>
+    <script src="../node_modules/datatables.net-bs5/js/dataTables.bootstrap5.js"></script>
+    <script src="../node_modules/datatables.net-searchpanes-bs5/js/searchPanes.bootstrap5.js"></script>
+    <link rel="stylesheet" href="css/stylesB.css">
+    <title>Document</title>
+</head>
+<body style="background-color: #CECECE; margin: 0;" onload="onloadSet()">
+    <header class="header">
+        <div class="logo">
+            <h1>GGG</h1>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li>
+                    <a href="pre.html">Experimento</a>
+                </li>
+                <li>
+                    <a href="sujetos copy.html">Sujetos</a>
+                </li>
+                <li>
+                    <a href="settings.html">Configuracion</a>
+                </li>
+                <li>
+                    <a href="analisis.html">Analisis</a>
+                </li>
+            </ul>
+        </nav>
+            <nav>
+            <ul class="nav-links">
+                <li class="nav-li2">
+                    <a href="perfil.html" style="vertical-align: middle;">Perfil</a>
+                </li>
+                
+                <li class="nav-li2">
+                    <a href="perfil.html" style="vertical-align: middle;"><img src="src/account-circle.png" alt=""></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="formulario">
+        <div class="container" style="padding: 0;">
+            <form class="needs-validation" id="config" novalidate onsubmit="return false">
+                <h1 class="subtitulo mb-3">Entrenamiento de modelo</h1>
+                <div class="row justify-content-start mb-5">
+                    <div class="col-3">
+                        <label for="saveSettings">Nombre</label>
+                        <input type="text" class="form-control" id="nameSetting" placeholder="Modelo 1" required>
+                    </div>
+                </div>
+                <div class="row justify-content-start mb-5">
+                    <div class="col-3">
+                        <label for="saveSettings">Modo</label>
+                        <select class="form-select" aria-label="Configuracion Guardada" id="savedSettings" onchange="loadSet(this)">
+                            <option selected value="0">Score</option>
+                        </select>
+                    </div>
+                    <div class="col-5"> 
+                        <label for="">Descripcion</label><br>
+                        <label for="">Esta opcion usara como dato de entrada principal el puntaje que fue obteniendo el usuario en cada iteracion, mediante un umbral de puntuacion sera clasificado entre "Bueno" o "Malo"</label>
+                    </div>
+                </div>
+                <div class="row justify-content-start mb-5">
+                    <div class="col-6">
+                        <div class="row justify-content-center">
+                            <table id="etiquetados" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Edad</th>
+                                        <th>Escolaridad</th>
+                                        <th>Carrera</th>
+                                        <th>Sexo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>  
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row justify-content-start mb-3">
+                            <label for="selecciones">Parametro 1</label>
+                            <input type="number" class="form-control" id="nameSetting" placeholder="0" required>
+                        </div>
+                        <div class="row justify-content-start mb-3">
+                            <label for="selecciones">Parametro 2</label>
+                            <input type="number" class="form-control" id="nameSetting" placeholder="0" required>
+                        </div>
+                        <label for="tiempo">Porcentaje de usuarios de Entrenamiento</label>
+                        <div class="input-group d-flex align-items-center">
+                            <input class="form-range me-2" type="range" id="tiempo" style="width: 80%;" placeholder="50" oninput="this.nextElementSibling.value = this.value">
+                            <output>50</output>
+                        </div>   
+                        <div class="col-3 my-auto">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="selectAll">
+                                <label class="form-check-label" for="selectAll">Seleccionar todos</label>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <!-- <label for="" class="mazoLab">Parametros</label>
+                <div class="row justify-content-start mb-5">
+                    <div class="col-3">
+                        <label for="selecciones">Parametro 1</label>
+                        <input type="number" class="form-control" id="nameSetting" placeholder="0" required>
+                    </div>
+                    <div class="col-6">
+                        <label for="selecciones">Parametro 2</label>
+                        <input type="number" class="form-control" id="nameSetting" placeholder="0" required>
+                    </div>
+                </div>   -->
+                <label for="" class="mazoLab">Resultados del entrenamiento</label>
+                <div class="row justify-content-start mb-5">
+                    <div class="col-2">
+                        <label for="">Accuracy: 0.00</label>
+                    </div>
+                    <div class="col-2">
+                        <label for="">F1: 0.00</label>
+                    </div>
+                    <div class="col-2">
+                        <label for="">Recall: 0.00</label>
+                    </div>
+                </div>
+                <div id="liveAlertPlaceholder"></div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg" id="saveSet">Entrenar</button>
+                </div> 
+            </form> 
+            <form class="needs-validation" id="config" novalidate onsubmit="return false"></form> 
+                <h1 class="subtitulo mb-3 mt-5">Clasificacion de sujetos</h1>
+                <div class="row justify-content-start mb-5">
+                    <div class="col-3">
+                        <label for="saveSettings">Modelo</label>
+                        <select class="form-select" aria-label="Configuracion Guardada" id="savedSettings" onchange="loadSet(this)">
+                            <option selected value="0">Score</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="container mt-5 mb-5" style="padding: 0;">
+                    <div class="row justify-content-start">
+                        <div class="col-3">
+                            <h4 class="form-label">Filtros</label>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                            <table id="example" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Experimento</th>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Fecha</th>
+                                        <th>Edad</th>
+                                        <th>Telefono</th>
+                                        <th>Escolaridad</th>
+                                        <th>Carrera</th>
+                                        <th>Aptitud</th>
+                                        <th>Sexo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>  
+                                </tbody>
+                            </table>
+                    </div>
+                    <h1 class="subtitulo">Resultado</h1>
+                    <div class="row justify-content-center">
+                        <table id="cuestionario" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Experimento</th>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Etiqueta</th>
+                                    <th>Mazo mas seleccionado</th>
+                                    <th>Mazo menos seleccionado</th>
+                                    <th>Tiempo medio entre selecciones</th>  
+                                </tr>
+                            </thead>
+                            <tbody>  
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="liveAlertPlaceholder"></div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg" id="saveSet">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="../viewscripts/inAr.js"></script>
+</body>
+</html>

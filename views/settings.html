@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="css/stylesB.css">
+    <title>Document</title>
+</head>
+<body style="background-color: #CECECE; margin: 0;" onload="onloadSet()">
+    <header class="header">
+        <div class="logo">
+            <h1>GGG</h1>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li>
+                    <a href="pre.html">Experimento</a>
+                </li>
+                <li>
+                    <a href="sujetos copy.html">Sujetos</a>
+                </li>
+                <li>
+                    <a href="settings.html">Configuracion</a>
+                </li>
+                <li>
+                    <a href="analisis.html">Analisis</a>
+                </li>
+            </ul>
+        </nav>
+            <nav>
+            <ul class="nav-links">
+                <li class="nav-li2">
+                    <a href="perfil.html" style="vertical-align: middle;">Perfil</a>
+                </li>
+                
+                <li class="nav-li2">
+                    <a href="perfil.html" style="vertical-align: middle;"><img src="src/account-circle.png" alt=""></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="formulario">
+        <div class="container" style="padding: 0;">
+            <form class="needs-validation" id="config" novalidate onsubmit="return false">
+                <h1 class="subtitulo mb-3">Configuracion del Experimento</h1>
+                <div class="row justify-content-between mb-5">
+                    <div class="col-5">
+                        <label for="nameSetting" class="fprm-label">Nombre de la configuracion</label>
+                        <input type="text" class="form-control" id="nameSetting" placeholder="Nueva Configuracion" required>
+                    </div>
+                    <div class="col-5">
+                        <label for="saveSettings">Configraciones Guardadas</label>
+                        <select class="form-select" aria-label="Configuracion Guardada" id="savedSettings" onchange="loadSet(this)">
+                            <option selected value="0">Ninguna</option>
+                        </select>
+                    </div>
+                </div>
+                <h1 class="subtitulo mb-3">Terminacion de la prueba</h1>
+                <div class="row justify-content-between mb-5">
+                    <div class="col-5">
+                        <label for="selecciones">Selecciones</label>
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <input class="form-check-input mt-0" type="radio" value=1 id="termSele" name="terminacion" onclick="term(this)">
+                            </div>
+                            <input class="form-control" type="number" placeholder="100" id="selecciones" disabled step="10" min="10">
+                        </div>   
+                    </div>
+                    <div class="col-5">
+                        <label for="tiempo">Tiempo (Segundos)</label>
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <input class="form-check-input mt-0" type="radio" value="0" id="termTiem" name="terminacion" onclick="term(this)" required>
+                            </div>
+                            <input class="form-control" type="number" placeholder="60" id="tiempo" disabled>
+                        </div>   
+                    </div>
+                </div>
+                <h1 class="subtitulo mb-3">Mazos</h1>
+                <div class="row justify-content-between mb-3">
+                    <div class="col-4">
+                        <label for="bancoInicial">Banco Inicial</label>
+                        <input type="number" class="form-control" id="bancoInicial" placeholder=2000 required>
+                    </div>
+                </div>
+                <div class="row justify-content-between mb-4">
+                    <div class="col-9">
+                        <label for="mazoA" class="mazoLab">Mazo A</label><br>
+                        <label for="gananciaA">10 numeros positivos separados por coma</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="gananciaAspan" style="width: 10%; justify-content: center;">Ganancia</span>
+                            <input class="form-control" type="text" id="gananciaA" aria-describedby="gananciaAspan" pattern="^(\d+,){9}\d+$" required placeholder="100,100,150,50,50,200,25,100,90,100">
+                        </div>
+                        <label for="perdidaA">10 numeros negativos separados por coma</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="perdidaAspan" style="width: 10%; justify-content: center;">Pérdida</span>
+                            <input class="form-control" type="text" id="perdidaA" aria-describedby="perdidaAspan" pattern="^(-\d+,|0,){9}(-\d+|0)+$" required placeholder="-100,-200,-50,-25,-100,-50,-60,-75,-90,-100">
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <label for="" class="mazoLab"></label><br>
+                        <label for="gananciaNA">Ganancia Neta</label>
+                        <input type="number" class="form-control" id="gananciaNA" placeholder="0" readonly>
+                    </div>
+                </div>
+                <div class="row justify-content-between mb-4">
+                    <div class="col-9">
+                        <label for="mazoB" class="mazoLab">Mazo B</label><br>
+                        <label for="gananciaB">10 numeros positivos separados por coma</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="gananciaBspan" style="width: 10%; justify-content: center;">Ganancia</span>
+                            <input class="form-control" type="text" id="gananciaB" aria-describedby="gananciaBspan" pattern="^(\d+,){9}\d+$" required placeholder="100,100,150,50,50,200,25,100,90,100">
+                        </div>
+                        <label for="perdidaB">10 numeros negativos separados por coma</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="perdidaBspan" style="width: 10%; justify-content: center;">Pérdida</span>
+                            <input class="form-control" type="text" id="perdidaB" aria-describedby="perdidaBspan" pattern="^(-\d+,|0,){9}(-\d+|0)+$" required placeholder="-100,-200,-50,-25,-100,-50,-60,-75,-90,-100">
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <label for="" class="mazoLab"></label><br>
+                        <label for="gananciaNB">Ganancia Neta</label>
+                        <input type="number" class="form-control" id="gananciaNB" placeholder="0" readonly>
+                    </div>
+                </div>
+                <div class="row justify-content-between mb-4">
+                    <div class="col-9">
+                        <label for="mazoC" class="mazoLab">Mazo C</label><br>
+                        <label for="gananciaC">10 numeros positivos separados por coma</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="gananciaCspan" style="width: 10%; justify-content: center;">Ganancia</span>
+                            <input class="form-control" type="text" id="gananciaC" aria-describedby="gananciaCspan" pattern="^(\d+,){9}\d+$" required placeholder="100,100,150,50,50,200,25,100,90,100">
+                        </div>
+                        <label for="perdidaC">10 numeros negativos separados por coma</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="perdidaCspan" style="width: 10%; justify-content: center;">Pérdida</span>
+                            <input class="form-control" type="text" id="perdidaC" aria-describedby="perdidaCspan" pattern="^(-\d+,|0,){9}(-\d+|0)+$" required placeholder="-100,-200,-50,-25,-100,-50,-60,-75,-90,-100">
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <label for="" class="mazoLab"></label><br>
+                        <label for="gananciaNC">Ganancia Neta</label>
+                        <input type="number" class="form-control" id="gananciaNC" placeholder="0" readonly>
+                    </div>
+                </div>
+                <div class="row justify-content-between mb-4">
+                    <div class="col-9">
+                        <label for="mazoD" class="mazoLab">Mazo D</label><br>
+                        <label for="gananciaD">10 numeros positivos separados por coma</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="gananciaDspan" style="width: 10%; justify-content: center;">Ganancia</span>
+                            <input class="form-control" type="text" id="gananciaD" aria-describedby="gananciaDspan" pattern="^(\d+,){9}\d+$" required placeholder="100,100,150,50,50,200,25,100,90,100">
+                        </div>
+                        <label for="perdidaD">10 numeros negativos separados por coma</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="perdidaDspan" style="width: 10%; justify-content: center;">Pérdida</span>
+                            <input class="form-control" type="text" id="perdidaD" aria-describedby="perdidaDspan" pattern="^(-\d+,|0,){9}(-\d+|0)+$" required placeholder="-100,-200,-50,-25,-100,-50,-60,-75,-90,-100">
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <label for="" class="mazoLab"></label><br>
+                        <label for="gananciaND">Ganancia Neta</label>
+                        <input type="number" class="form-control" id="gananciaND" placeholder="0" readonly>
+                    </div>
+                </div>
+                <div id="liveAlertPlaceholder"></div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg" id="saveSet">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="../viewscripts/settings.js"></script>
+</body>
+</html>
